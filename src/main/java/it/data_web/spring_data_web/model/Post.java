@@ -1,5 +1,6 @@
 package it.data_web.spring_data_web.model;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,11 +80,5 @@ public class Post {
         this.publishDate = publishDate;
     }
 
-    public List<Commento> getComments() {
-        return comments;
-    }
-
-    public void setComments(List<Commento> comments) {
-        this.comments = comments;
-    }
+    
 }

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="~{index :: defaultHead}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center">Authors</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <table id="authorsTable" class="table table-striped table-responsive-lg">
+                    <thead>
+                        <tr>
+                            <th>Firstname</th>
+                            <th>Lastname</th>
+                            <th>Email</th>
+                            <th># Posts</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+    <script>
+        fetch("/api/authors").then((res) => {
+            if (res.status >= 200 && res.status < 400)
+                return res.json();
+        }).then((authors) => {
+            console.log(authors);
+            const tableBody = document.querySelector("#authorsTable > tbody");
+            authors.forEach(author => {
+                const tableRow = document.createElement("tr");
+                tableRow.innerHTML = `
+                    <td>${author.firstName}</td>
+                    <td>${author.lastName}</td>
+                    <td>${author.email}</td>
+                    <td>${author.numberOfPost}</td>
+                `;
+                tableBody.appendChild(tableRow);
+            });
+        });
+    </script>
+</body>
+
+</html>

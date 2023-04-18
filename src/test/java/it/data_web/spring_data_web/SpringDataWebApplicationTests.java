@@ -150,6 +150,7 @@ class SpringDataWebApplicationTests {
 	@Test
 	void customQuery4(){
 		assertThat(commentoRepository.count()).isEqualTo(3);
+		// isEqualTo(3) -> conta che i commenti siano 3
 		commentoRepository.deleteEle();
 		assertThat(commentoRepository.count()).isEqualTo(3);
 
